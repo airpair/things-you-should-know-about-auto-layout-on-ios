@@ -16,21 +16,32 @@ Until now, if your designs were reasonably complex, you had to write a lot of co
 
 * Try to keep `Update Frames` to `None` unless you are sure that your auto layout constraints are complete for the view you are positioning. When you update frames, XCode tries to position the views by satisfying the constraints and if the constraints are not complete, most of the times, it will end up resizing your view to `0` width/height. If you do leave `Update Frames` on and XCode repositions view to someplace you didn't expect it to, do a `Cmd+Z` to bring the views back to their old position without removing the constraints you added. 
 * When in doubt, check the color of the small arrow next to the view controller you are designing. Red means there are some errors in the auto layout constraints that you added. Yellow means that some frames are incorrectly positioned with respect to the constraints. 
+
+<div style="text-align:center">
 ![](http://res.cloudinary.com/http-pulkitgoyal-in/image/upload/c_scale,w_400/v1418058060/Screen_Shot_2014-12-08_at_18_00_15_z1s9kt.png)
+</div>
 
 * Clicking on the arrow will take you to a list of errors/warnings. You can get suggestions on how to fix it by clicking on the small circle on the right.
 
+<div style="text-align:center">
 ![](http://res.cloudinary.com/http-pulkitgoyal-in/image/upload/c_scale,w_400/v1418058275/Screen_Shot_2014-12-08_at_18_03_10_vgz4ku.png)
+</div>
 
 * Deleting a constraint will not reposition your views but the layout might go into "warning" mode, indicating issues you need to resolve to make auto-layout work.
 
 * When you move things around, your constraints don't change; only view frame in IB changes. When frame in IB is actually different from calculated with layout constraints frame, IB will indicate the runtime frame of that element with yellow dotted line and the layout will be in "warning" mode.
 
 * Once you have added the constraints for a view, you can update the frames of all its subviews pressing the small triangle button in the bottom after selecting the view you want to update. 
+
+<div style="text-align:center">
 ![](http://res.cloudinary.com/http-pulkitgoyal-in/image/upload/c_scale,w_400/v1418058476/Screen_Shot_2014-12-08_at_18_05_56_e8dfps.png)
+</div>
 
 * If you cannot select a constraint from the Storyboard, select the view and open the Size Inspector to select the constraint from there. 
+
+<div style="text-align:center">
 ![](http://res.cloudinary.com/http-pulkitgoyal-in/image/upload/c_scale,w_400/v1418058830/Screen_Shot_2014-12-08_at_18_13_31_kq1gpe.png)
+</div>
 
 * Animations should now be dealt in terms of auto layout constraints. This means that you should not manually touch the frame when animating. Change the constraints and call `layoutIfNeeded` inside the animation block. To build the constraints in code, I recommend using [Masonry](https://github.com/Masonry/Masonry) rather than the overly verbose defaults. 
 
